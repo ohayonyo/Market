@@ -1,0 +1,75 @@
+#parse("/htmlDirectories/subscriberNavigationBar.vm")
+<html lang="en-us">
+<head>
+    <link rel="stylesheet" href="/Main.css">
+    <link rel="stylesheet" href="/pageDesign.css">
+
+</head>
+
+<body style = "background: url(back2.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
+    #@subscriberNavigationBar()
+    #end
+<main>
+
+    <div class="Container">
+        <form class=add_counter_bid_form id=add_counter_bid_form; method="post";>
+            <h1 class="white">Approve Bid</h1>
+            <input type="hidden" name="connectionID" id="connectionID" value="" required>
+            <script type="text/javascript">
+                document.getElementById("connectionID").setAttribute('value',localStorage.getItem("connectID"));
+            </script>
+            <input type="hidden" name="store_id" id="store_id" value=$store_id>
+
+            <div class="row">
+                <div class="col-15">
+                    <label class="white" for="products">Bids</label>
+                </div>
+                <div class="col-30">
+                    <select name="bids" id="bids" required>
+                        #foreach($b in $bids)
+                            <option>$b</option>
+                        #end
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <input type="submit" value="Submit">
+            </div>
+
+            #@exceptionsView()
+            #end
+        </form>
+    </div>
+
+#*        <form id="approve_bid_form" method="post">
+            <div style = "font-size: 25; font-family: cursive; color: black;
+                          position: inherit; left: 7%;">
+                <h1>Approve Bid</h1>
+                <input type="hidden" name="connectionID" id="connectionID" value="">
+                <script type="text/javascript">
+                    document.getElementById("connectionID").setAttribute('value',localStorage.getItem("connectID"));
+                </script>
+                <input type="hidden" name="store_id" id="store_id" value=$store_id>
+                <div>
+                    <div>
+                        <label for="bids">Bids</label>
+                    </div>
+                    <div>
+                        <select name="bids" id="bids" required>
+                            <option value=""></option>
+                            #foreach($b in $bids)
+                                <option>$b</option>
+                            #end
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <button class = "submit_button1" > Submit </button>
+                </div>
+            </div>
+        </form>*#
+
+</main>
+</body>
+</html>

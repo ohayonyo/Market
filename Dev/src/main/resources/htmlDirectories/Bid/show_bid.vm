@@ -1,0 +1,55 @@
+#parse("/htmlDirectories/subscriberNavigationBar.vm")
+<html lang="en-us">
+<head>
+    <link rel="stylesheet" href="/Main.css">
+    <link rel="stylesheet" href="/pageDesign.css">
+
+</head>
+
+<body style = "background: url(back2.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
+    #@subscriberNavigationBar()
+    #end
+<main>
+
+    <div class="Container">
+            <h1 class="white">Show Bid of Store ID: $store_id</h1>
+
+
+        #if(($bids) && ($bids.size() > 0))
+            <p class="no_exception">Bids was set:</p>
+            <div class="row row-3">
+                #foreach($b in $bids)
+                    <div>
+                        $b
+                    </div>
+                #end
+            </div>
+        #else
+            <p class="exception">NO Bids where Set in this Store</p>
+        #end
+
+
+            #@exceptionsView()
+            #end
+    </div>
+
+#*        <div style = "font-size: 25; font-family: cursive; color: black;
+                      position: inherit; left: 7%;">
+        <h1>Show Bid of Store ID: $store_id</h1>
+        </div>
+
+    #if(($bids) && ($bids.size() > 0))
+        <p class="no_exception">Bids was set:</p>
+        <div class="row row-3">
+            #foreach($b in $bids)
+                <div>
+                    $b
+                </div>
+            #end
+        </div>
+    #else
+        <p class="exception">NO Bids where Set in this Store</p>
+    #end*#
+</main>
+</body>
+</html>

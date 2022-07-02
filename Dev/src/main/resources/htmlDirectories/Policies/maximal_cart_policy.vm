@@ -1,0 +1,63 @@
+#parse("/htmlDirectories/subscriberNavigationBar.vm")
+#parse("/htmlDirectories/exceptionsView.vm")
+<html lang="en-us">
+<head>
+    <link rel="stylesheet" href="/Main.css">
+    <link rel="stylesheet" href="/pageDesign.css">
+</head>
+
+<body style = "background: url(back2.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
+    #@subscriberNavigationBar()
+    #end
+<main>
+
+    <div class="Container">
+        <form id="maximal_cart_policy_form" method="post">
+            <h1>Set Maximal Cart Policy</h1>
+            <input type="hidden" name="connectionID" id="connectionID" value="">
+            <script type="text/javascript">
+                document.getElementById("connectionID").setAttribute('value',localStorage.getItem("connectID"));
+            </script>
+            <input type="hidden" name="store_id" id="store_id" value=$store_id>
+
+
+            <div class="row">
+                <div class="col-15">
+                    <label class="white" for="max_price">Max cart price</label>
+                </div>
+                <div class="col-30">
+                    <input type="number" id="max_price" name="max_price" placeholder="max cart price" value="" required min="0">
+                </div>
+            </div>
+
+            <div class="row">
+                <input type="submit" value="Submit">
+            </div>
+
+            #@exceptionsView()
+            #end
+        </form>
+    </div>
+
+#*        <form id="maximal_cart_policy_form" method="post">
+            <div style = "font-size: 25; font-family: cursive; color: black;
+                          position: inherit; left: 7%;">
+            <h1>Set Maximal Cart Policy</h1>
+            <input type="hidden" name="connectionID" id="connectionID" value="">
+            <script type="text/javascript">
+                document.getElementById("connectionID").setAttribute('value',localStorage.getItem("connectID"));
+            </script>
+            <input type="hidden" name="store_id" id="store_id" value=$store_id>
+            <div>
+                <div>
+                     <label for="max_price">max cart price</label>
+                     <input type="number" name="max_price" id="max_price" placeholder="max cart price" value="" required min="0">
+                </div>
+            </div>
+            <div>
+                <button class = "submit_button1" > Submit </button>
+            </div>
+        </form>*#
+</main>
+</body>
+</html>

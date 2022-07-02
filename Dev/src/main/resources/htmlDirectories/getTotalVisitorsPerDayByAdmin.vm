@@ -1,0 +1,89 @@
+#parse("/htmlDirectories/subscriberNavigationBar.vm")
+#parse("/htmlDirectories/exceptionsView.vm")
+<html lang="en-us">
+<head>
+</head>
+<body>
+    #@subscriberNavigationBar()
+    #end
+<main>
+    <div class="container">
+        <form id="getTotalVisitorsPerDayByAdminForm" method="post">
+            <h1 id="getTotalVisitorsPerDayByAdminLabel">total visitors of the system</h1>
+            <input type="hidden" name="connectionID" id="connectionID" value="">
+            <script type="text/javascript">
+                document.getElementById("connectionID").setAttribute('value',localStorage.getItem("connectID"));
+                let ws2 = new WebSocket("ws://" + location.hostname + ":" + location.port + "/visitors");
+                ws2.onopen = () => ws2.send(localStorage.getItem("connectID"));
+                ws2.onmessage = msg => {
+                    let map = JSON.parse(msg.data)
+                    document.getElementById("guests").innerHTML = map.guests
+                    document.getElementById("subscribers").innerHTML = map.subscribers
+                    document.getElementById("store managers").innerHTML = map.managers
+                    document.getElementById("store owners").innerHTML = map.owners
+                    document.getElementById("system admins").innerHTML = map.admins
+                    drawChart()
+                }
+            </script>
+            <div id="guests" hidden="true"> $visitors.get("guests") </div>
+            <div id="subscribers" hidden="true"> $visitors.get("subscribers") </div>
+            <div id="store managers" hidden="true"> $visitors.get("managers") </div>
+            <div id="store owners" hidden="true"> $visitors.get("owners") </div>
+            <div id="system admins" hidden="true"> $visitors.get("admins") </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="date" id="dateFor">date</label>
+                </div>
+                <div class="col-75">
+                    <input type="date" id="dateId" name="date" placeholder="date" value="" required>
+                </div>
+            </div>
+            <div class="row">
+                <input type="submit" id="submitDateId" value="view visitors">
+            </div>
+        </form>
+    </div>
+    <p> <div id="visitors_table" style="width: 700px; margin-left: 450; height: 150px;"></div> </p>
+    #if($visitors)
+        <p class="good notification"></p>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            google.charts.load("current", {packages:["corechart"]});
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                    ["Element", "visitors", { role: "style" } ],
+                    ["Guests", parseInt(document.getElementById("guests").innerHTML), "#ffff66"],
+                    ["Subscribers", parseInt(document.getElementById("subscribers").innerHTML), "ffcc66"],
+                    ["Store Managers", parseInt(document.getElementById("store managers").innerHTML), "ff5050"],
+                    ["Store Owners", parseInt(document.getElementById("store owners").innerHTML), "color: #66ccff"],
+                    ["System Admins", parseInt(document.getElementById("system admins").innerHTML), "color: #66ff66"]
+                ]);
+
+                var view = new google.visualization.DataView(data);
+                view.setColumns([0, 1,
+                    { calc: "stringify",
+                        sourceColumn: 1,
+                        type: "string",
+                        role: "annotation" },
+                    2]);
+
+                var options = {
+                    width: 700,
+                    height: 500,
+                    bar: {groupWidth: "95%"},
+                    legend: { position: "none" },
+                    is3D: true
+                };
+
+                var chart = new google.visualization.PieChart(document.getElementById("visitors_table"));
+                chart.draw(view, options);
+            }
+        </script>
+    #elseif($failed)
+        <p class="bad notification">not allowed to see system visitors table</p>
+    #end
+</main>
+</body>
+</html>

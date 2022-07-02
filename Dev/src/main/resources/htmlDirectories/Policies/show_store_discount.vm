@@ -1,0 +1,83 @@
+#parse("/htmlDirectories/subscriberNavigationBar.vm")
+#parse("/htmlDirectories/exceptionsView.vm")
+<html lang="en-us">
+<head>
+    <link rel="stylesheet" href="/Main.css">
+    <link rel="stylesheet" href="/pageDesign.css">
+
+</head>
+
+<body style = "background: url(back2.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
+    #@subscriberNavigationBar()
+    #end
+<main>
+
+    <div class="Container">
+        <form id="show_store_discount_form" method="post">
+            <h1>Store Discounts</h1>
+            <input type="hidden" name="connectionID" id="connectionID" value="">
+            <script type="text/javascript">
+                document.getElementById("connectionID").setAttribute('value',localStorage.getItem("connectID"));
+            </script>
+
+            <div class="row">
+                <div class="col-15">
+                    <label class="white" for="store_id">Store id</label>
+                </div>
+                <div class="col-30">
+                    <input type="number" id="store_id" name="store_id" placeholder="Enter store id here" tabindex="1" value="" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <input type="submit" value="Submit">
+            </div>
+
+            #if($discounts)
+                <p class="no_exception">Discount was set:</p>
+                <div class="row row-3">
+                    #foreach($d in $discounts)
+                        <div>
+                            $d
+                        </div>
+                    #end
+                </div>
+            #end
+
+            #@exceptionsView()
+            #end
+        </form>
+    </div>
+
+#*    <form id="show_store_discount_form" method="post">
+        <div style = "font-size: 25; font-family: cursive; color: black;
+                      position: inherit; left: 7%;">
+        <h1>Store Discounts</h1>
+        </div>
+        <input type="hidden" name="connectionID" id="connectionID" value="">
+        <script type="text/javascript">
+            document.getElementById("connectionID").setAttribute('value',localStorage.getItem("connectID"));
+        </script>
+
+        <div style = "font-size: 15; font-family: cursive; color: black;
+                                  position: fixed; top: 30%; left: 5%;">
+        <h1>Store ID</h1>
+        <input type="number" min = "1" maxlength="50" name="store_id"
+                placeholder="Enter store id here" tabindex="1" value="" required
+                class = "store_id1">
+        <button class = "submit_button1"> Submit </button>
+    </form>
+
+    #if($discounts)
+        <p class="no_exception">Discount was set:</p>
+        <div class="row row-3">
+            #foreach($d in $discounts)
+                <div>
+                    $d
+                </div>
+            #end
+        </div>
+    #end*#
+</main>
+</body>
+</html>

@@ -1,0 +1,115 @@
+#macro(subscriberNavigationBar)
+<head>
+
+    <link rel="stylesheet" href="/Main.css">
+        <div class="top_navigation">
+            <a class = "home" href="/">Home</a>
+          <div class="sub_navigation">
+            <button class="sub_navigation_button">Personal Space<i class="fa fa-caret-down"></i></button>
+            <div class="sub_navigation_content">
+                #if($current_user == "Admin")
+                    <a href="/admin">Admin Information</a>
+                    <a href="/getTotalVisitorsPerDayByAdmin">system visitors</a>
+                #end
+            <form id="logout_form" method="post" action="/logout">
+                <input type="hidden" name="logoutID" id="logoutID" value="">
+                #if($current_user)
+                    <script type="text/javascript">
+                        document.getElementById("logoutID").setAttribute('value',localStorage.getItem("connectID"));
+                        let ws = new WebSocket("ws://" + location.hostname + ":" + location.port + "/Notifications");
+                        ws.onopen = () => ws.send(localStorage.getItem("connectID"));
+                        ws.onmessage = msg => {document.getElementById("realTime").innerHTML += '<a id="realTimeNotif" href="/#">'+msg.data+'</a>';}
+                    </script>
+                #end
+                <button id="logout" >Logout</button>
+            </form>
+
+            </div>
+          </div>
+            <div class="sub_navigation">
+                <button class="sub_navigation_button">Cart<i class="fa fa-caret-down"></i></button>
+                <div class="sub_navigation_content">
+                  <a href="/show_cart">Show Cart</a>
+                  <a href="/update_cart">Update Cart</a>
+                </div>
+            </div>
+
+           <div class="sub_navigation">
+               <button class="sub_navigation_button">Store<i class="fa fa-caret-down"></i></button>
+               <div class="sub_navigation_content">
+                 <a href="/open_store">Open Store</a>
+                 <a href="/close_store">Close Store</a>
+                   <a href="/store_roles">Store Roles</a>
+                   <a href="/appointStoreRole">Appoint Store Role</a>
+                   <a href="/removeAppointment">Remove Store Role</a>
+                   <a href="/add_product">Add Product</a>
+                 <a href="/update_product">Update Product</a>
+                 <a href="/delete_product">Delete Product</a>
+                 <a href="/purchase_history">Purchase History</a>
+               </div>
+           </div>
+
+          <div class="sub_navigation">
+              <button class="sub_navigation_button">Policies<i class="fa fa-caret-down"></i></button>
+              <div class="sub_navigation_content">
+                <a href="/show_store_policy">Show Store Policies</a>
+                <a href="/add_policy">Add Policy</a>
+                <a href="/pre_delete_policy">Delete Policy</a>
+                  <a href="/reset_store_policy">Reset Store Policy</a>
+              </div>
+          </div>
+
+          <div class="sub_navigation">
+                <button class="sub_navigation_button">Discounts<i class="fa fa-caret-down"></i></button>
+                <div class="sub_navigation_content">
+                  <a href="/show_store_discount">Show Store Discounts</a>
+                  <a href="/add_discount">Add Discount</a>
+                  <a href="/pre_delete_discount">Delete Discount</a>
+                  <a href="/reset_store_discounts">Reset Store Discount</a>
+                </div>
+          </div>
+
+          <div class="sub_navigation">
+              <button class="sub_navigation_button">Permissions<i class="fa fa-caret-down"></i></button>
+              <div class="sub_navigation_content">
+                  <a href="/add_store_policy_management_permission">Add Store Policy Management Permission</a>
+                  <a href="/delete_store_policy_management_permission">Delete Store Policy Management Permission</a>
+                  <a href="/add_inventory_management_permission">Add Inventory Management Permission</a>
+                  <a href="/delete_inventory_management_permission">Delete Inventory Management Permission</a>
+                  <a href="/add_bid_permission">Add Bid Permission</a>
+                  <a href="/delete_bid_permission">Delete Bid Permission</a>
+              </div>
+          </div>
+
+          <a class = "Bid" href="/pre_bid">Bid</a>
+
+            <div class="sub_navigation">
+                <button class="sub_navigation_button">Search<i class="fa fa-caret-down"></i></button>
+                <div class="sub_navigation_content">
+                    <a href="/search_by_name">By Product Name</a>
+                    <a href="/search_by_category">By Product Category</a>
+                    <a href="/search_by_keyword">By Product Keyword</a>
+                </div>
+            </div>
+
+            <a id = "search" href="/market_info">Market Info</a>
+            #if($current_user)
+            <a>Connected User: $current_user</a>
+            #end
+
+            <div class="sub_navigation">
+                <button id="imgNot" style="background: url(noti.jpg); background-size: 100% 100%; background-repeat: no-repeat;" class="sub_navigation_button"><i class="fa fa-caret-down"></i></button>
+                <div class="sub_navigation_content" id="notifyDrop">
+##                    <button style="background: url(back4.jpg); background-size: 100% 100%; background-repeat: no-repeat;" class="dropbtn" id="notify">
+##                        <i class="fa fa-caret-down"></i>
+##                    </button>
+                    <div class="dropdown-content" id="realTime">
+                        #foreach($notification in $notifications)
+                            <a href="/#">$notification</a>
+                        #end
+                    </div>
+                </div>
+            </div>
+        </div>
+</head>
+#end

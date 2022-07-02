@@ -1,0 +1,461 @@
+/* The navigation menu */
+.top_navigation {
+  overflow: hidden;
+  background-color: #333;
+}
+
+/* Navigation links */
+.top_navigation a {
+  float: left;
+  font-size: 16px;
+  font-family: cursive;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+#notificationsPicture{
+    width: 80px;
+    height: 45px;
+}
+
+#dateFor{
+    margin-left: 775;
+    font-weight: bold;
+    font-size: x-large;
+    color: darkmagenta;
+}
+
+#imgNot{
+    margin-top: 10;
+    width: 70;
+}
+
+#dateId{
+    margin-left: 735;
+    margin-top: 10;
+    border-color: darkorchid;
+    border-width: medium;
+    text-align: left;
+}
+
+#getTotalVisitorsPerDayByAdminLabel{
+    margin-left: 630;
+}
+
+#submitDateId{
+    margin-left: 750;
+    margin-top: 10;
+    text-shadow: 0 0 black;
+}
+
+/* The subnavigation menu */
+.sub_navigation {
+  float: left;
+  overflow: hidden;
+}
+
+/* Subnav button */
+.sub_navigation .sub_navigation_button {
+  font-size: 16px;
+  font-family: cursive;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  margin: 0;
+}
+
+/* Add a red background color to navigation links on hover */
+.top_navigation a:hover, .sub_navigation:hover .sub_navigation_button {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Style the subnav content - positioned absolute */
+.sub_navigation_content {
+  display: none;
+  position: absolute;
+  background-color: #333;
+}
+
+/* Style the subnav links */
+.sub_navigation_content a {
+  font-family: cursive;
+  float: left;
+  color: white;
+  text-decoration: none;
+}
+
+#logout{
+    font-family: cursive;
+    font-size: 16px;
+    background-color: #333;
+    display: block;
+    color: white;
+    text-align: left;
+    background: #333;
+    padding: 14px 16px;
+    text-decoration: none;
+    border: none;
+    width: 100%;
+}
+
+#logout: hover{
+    background-color: #ddd;
+    color: black;
+}
+
+/* Add a grey background color on hover */
+.sub_navigation_content a:hover {
+  background-color: #ddd;
+  color: black;
+  display: block;
+}
+
+/* When you move the mouse over the subnav container, open the subnav content */
+.sub_navigation:hover .sub_navigation_content {
+  display: block;
+}
+
+.top_navigation .home {
+    background-color: dimgrey;
+    color: white;
+}
+
+body{
+    margin:0;
+}
+
+.password_form {
+    position: fixed;
+    top: 55%;
+    right: 35%;
+    width: 250;
+    height: 30;
+}
+
+.user_form{
+    position: fixed;
+    top: 45%;
+    right: 35%;
+    width: 250;
+    height: 30;
+}
+
+.submit_button{
+     position: fixed;
+     left: 45%;
+     bottom: 25%;
+     background-color: #333;
+     color: #f2f2f2;
+     font-size: 25px;
+     font-family: cursive;
+}
+
+.submit_button1{
+     left: 45%;
+     bottom: 25%;
+     background-color: #333;
+     color: #f2f2f2;
+     font-size: 25px;
+     font-family: cursive;
+}
+
+.store_id{
+    position: fixed;
+    top: 45%;
+    right: 54%;
+    width: 200;
+    height: 30;
+}
+
+.store_id3{
+    position: fixed;
+    top: 34%;
+    right: 54%;
+    width: 200;
+    height: 30;
+}
+
+.store_id2{
+    position: fixed;
+    top: 33%;
+    right: 54%;
+    width: 200;
+    height: 30;
+}
+
+.user_name{
+    position: fixed;
+    top: 42%;
+    right: 54%;
+    width: 200;
+    height: 30;
+}
+
+.role_droplist{
+    position: fixed;
+    top: 50%;
+    right: 54%;
+    width: 200;
+    height: 30;
+}
+
+.store_id1{
+    position: fixed;
+    top: 34%;
+    right: 64%;
+    width: 200;
+    height: 30;
+}
+
+.product_name1{
+    position: fixed;
+    top: 44%;
+    right: 64%;
+    width: 200;
+    height: 30;
+}
+
+.product_id2{
+    position: fixed;
+    top: 40%;
+    right: 64%;
+    width: 200;
+    height: 30;
+}
+
+.category1{
+    position: fixed;
+    top: 54%;
+    right: 64%;
+    width: 200;
+    height: 30;
+}
+
+.description1{
+    position: fixed;
+    top: 63%;
+    right: 64%;
+    width: 200;
+    height: 30;
+}
+
+.amount1{
+    position: fixed;
+    top: 70%;
+    right: 64%;
+    width: 200;
+    height: 30;
+}
+
+.price1{
+    position: fixed;
+    top: 82%;
+    right: 64%;
+    width: 200;
+    height: 30;
+}
+
+.owner1{
+    position: fixed;
+    top: 73%;
+    right: 64%;
+    width: 200;
+    height: 30;
+}
+.address2{
+    position: fixed;
+    top: 79%;
+    right: 64%;
+    width: 200;
+    height: 30;
+}
+
+.city2{
+    position: fixed;
+    top: 85%;
+    right: 64%;
+    width: 200;
+    height: 30;
+}
+
+.country2{
+    position: fixed;
+    top: 91%;
+    right: 64%;
+    width: 200;
+    height: 30;
+}
+
+.zipcode2{
+    position: fixed;
+    top: 95%;
+    right: 64%;
+    width: 200;
+    height: 30;
+}
+
+.name1{
+    position: fixed;
+    top: 74%;
+    right: 64%;
+    width: 200;
+    height: 30;
+}
+
+.address1{
+    position: fixed;
+    top: 81%;
+    right: 64%;
+    width: 200;
+    height: 30;
+}
+
+.city1{
+    position: fixed;
+    top: 88%;
+    right: 64%;
+    width: 200;
+    height: 30;
+}
+
+.country1{
+    position: fixed;
+    top: 88%;
+    right: 64%;
+    width: 200;
+    height: 30;
+}
+
+
+
+
+
+.divScroll {
+    overflow:scroll;
+    height:100px;
+    width:200px;
+}
+
+Overflow-y:scroll; //add vertical bar option in html
+
+.product_id{
+    position: fixed;
+    top: 44%;
+    right: 54%;
+    width: 200;
+    height: 30;
+}
+
+.product_id1{
+    position: fixed;
+    top: 40%;
+    right: 64%;
+    width: 200;
+    height: 30;
+}
+
+.product_id22{
+    position: fixed;
+    top: 47%;
+    right: 64%;
+    width: 200;
+    height: 30;
+}
+
+.final_amount{
+    position: fixed;
+    top: 51%;
+    right: 64%;
+    width: 200;
+    height: 30;
+}
+
+.final_amount2{
+    position: fixed;
+    top: 53%;
+    right: 54%;
+    width: 200;
+    height: 30;
+}
+
+.product_id3{
+    position: fixed;
+    top: 43%;
+    right: 54%;
+    width: 200;
+    height: 30;
+}
+
+.no_exception{
+    font-size: 20px;
+    color: green;
+    font-family: cursive;
+}
+
+.exception{
+    font-size: 20px;
+    color: red;
+    font-family: cursive;
+}
+
+.errorLog_buttons{
+    margin-left: 90;
+    margin-top: 30;
+    height: 80;
+    width: 200;
+    padding: 5 5;
+    background-color: #333;
+    color: #f2f2f2;
+    font-family: cursive;
+    font-size: 25px;
+    text-align: center;
+    position: fixed;
+    top: 45%;
+}
+
+.eventLog_buttons{
+    margin-left: 90;
+    margin-top: 00;
+    height: 80;
+    width: 200;
+    padding: 5 5;
+    background-color: #333;
+    color: #f2f2f2;
+    font-family: cursive;
+    font-size: 25px;
+    text-align: center;
+    position: fixed;
+    top: 60%;
+}
+
+.pruchase_history_admin_buttons{
+    margin-left: 90;
+    margin-top: 90;
+    height: 80;
+    width: 200;
+    padding: 5 5;
+    background-color: #333;
+    color: #f2f2f2;
+    font-family: cursive;
+    font-size: 25px;
+    text-align: center;
+    position: fixed;
+    top: 60%;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#infoCol{
+    margin-left: 10px;
+    font-family: cursive;
+    font-size: initial;
+}

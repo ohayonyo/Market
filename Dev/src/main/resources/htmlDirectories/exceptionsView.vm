@@ -1,0 +1,91 @@
+#macro(exceptionsView)
+<html lang="en-us">
+<head>
+    <link rel="stylesheet" href="/Main.css">
+</head>
+
+<body style = "background: url(back2.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
+        #if($Not_Owner_Exception)
+            <p class = "exception" >You are not this store's owner</p>
+        #elseif($Not_Manager_Exception)
+            <p class = "exception" >You are not this store's manager</p>
+        #elseif($Already_Owner_Exception)
+            <p class = "exception" >The user is already owner</p>
+        #elseif($Already_Manager_Exception)
+            <p class = "exception" >The user is already manager</p>
+        #elseif($Illegal_Circularity_Exception)
+            <p class = "exception" >Circularity error</p>
+        #elseif($Illegal_Permissions_Access)
+            <p class = "exception" >Illegal Permissions Access</p>
+        #elseif($User_Cant_Appoint_Himself)
+            <p class = "exception" >User can't appoint himself</p>
+        #elseif($User_Name_Not_Exist_Exception)
+            <p class = "exception" >User Name Not Exist</p>
+        #elseif($Connection_Not_Found_Exception)
+            <p class = "exception" >Connection Not Found</p>
+        #elseif($ConnectionID_Not_Found_Exception)
+            <p class = "exception" >Connection ID Not Found</p>
+        #elseif($Store_Not_Found_Exception)
+            <p class = "exception" >Store Not Found</p>
+        #elseif($User_Not_Subscriber_Exception)
+            <p class = "exception" >User not subscriber</p>
+        #elseif($Not_Inventory_Management_Exception)
+            <p class = "exception"> The user isn't Inventory Management</p>
+        #elseif($Store_Not_Active_Exception)
+            <p class = "exception"> Store Not Active</p>
+        #elseif($Product_Not_Found_Exception)
+            <p class = "exception"> Product Not Found</p>
+        #elseif($Illegal_Name_Exception)
+            <p class = "exception"> Illegal Name Exception</p>
+        #elseif($Illegal_Price_Exception)
+            <p class = "exception"> Illegal Price Exception</p>
+        #elseif($Insufficient_Inventory)
+            <p class = "exception"> Insufficient Inventory</p>
+        #elseif($Not_Founder_Exception)
+            <p class = "exception"> This user isn't the store's founder</p>
+        #elseif($Illegal_Discount_Exception)
+            <p class = "exception"> Illegal Discount</p>
+        #elseif($Bag_Not_Valid_Policy_Exception)
+            <p class = "exception"> Bag- Not Valid Policy </p>
+        #elseif($Already_Logged_In_Exception)
+            <p class = "exception"> The User Is Already Logged In a Different Session </p>
+        #elseif($Policy_Not_Found_Exception)
+            <p class = "exception"> One of the Policies Not Found </p>
+        #elseif($Policy_Already_Exists_Exception)
+            <p class = "exception"> This Policy Already Exists </p>
+        #elseif($IllegalTimeRangeException)
+            <p class = "exception"> Illegal Time Range </p>
+        #elseif($Payment_Exception)
+            <p class = "exception"> Payment Error- process hasn't been completed! </p>
+        #elseif($Empty_Cart_Exception)
+            <p class = "exception"> Empty Cart </p>
+        #elseif($Not_Store_Policy_Exception)
+            <p class = "exception"> User Does not have Permissions to this Store </p>
+        #elseif($Discount_Already_Exists_Exception)
+            <p class = "exception"> Discount Already Exists </p>
+        #elseif($Illegal_Range_Exception)
+            <p class = "exception"> Illegal Range </p>
+        #elseif($Cant_Remove_Product_Exception)
+            <p class = "exception"> Cant Remove one of the Products </p>
+        #elseif($Discount_Not_Found_Exception)
+            <p class = "exception"> one of the Discounts was Not Found </p>
+        #elseif($Not_Compound_Exception)
+            <p class = "exception"> Not Compound </p>
+        #elseif($Cant_Remove_Discount_Exception)
+            <p class = "exception"> Cant Remove one of the Discounts </p>
+        #elseif($Not_Owner_By_Exception)
+            <p class = "exception"> Only the user that appointed this user to be owner can also remove the store ownership </p>
+        #elseif($Out_Of_Inventory_Exception)
+        <p class = "exception"> The current amount/product is larger than in the inventory </p>
+        #elseif($IOException)
+        <p class = "exception"> Incorrect input </p>
+        #elseif($Subscriber_Has_Roles_Exception)
+        <p class = "exception"> That user has a role in one of the stores </p>
+        #elseif($Not_Manager_By_Exception)
+        <p class = "exception"> Failure since the selected user isn't appointed to be manager by you. </p>
+        #elseif($Exception)
+            <p class = "exception"> $Exception </p>
+        #end
+</body>
+</html>
+#end

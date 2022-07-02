@@ -1,0 +1,87 @@
+#parse("/htmlDirectories/subscriberNavigationBar.vm")
+#parse("/htmlDirectories/exceptionsView.vm")
+<html lang="en-us">
+<head>
+    <link rel="stylesheet" href="/Main.css">
+    <link rel="stylesheet" href="/pageDesign.css">
+
+</head>
+
+<body style = "background: url(back4.jpg);
+                background-size: 100% 100%;
+                background-repeat: no-repeat;">
+
+    #@subscriberNavigationBar()
+    #end
+    <main>
+    <div>
+        <div class="WhiteContainer">
+            <form class=admin_form id=admin_form; method="post";>
+                <h1 class="white">Admin Operations</h1>
+
+                <input type="hidden" name="connectionID" id="connectionID" value="">
+                <script type="text/javascript">
+                    document.getElementById("connectionID").setAttribute('value',localStorage.getItem("connectID"));
+                </script>
+
+                <div class="row">
+                    <button class="button-6" formaction="/error_log"> Error Log </button>
+                </div>
+
+                <div class="row">
+                    <button class="button-6" formaction="/event_log"> Event Log </button>
+                </div>
+
+                <div class="row">
+                    <button class="button-6" formaction="/show_purchase_history_admin"> Purchase History </button>
+                </div>
+
+                <div class="row">
+                    <button class="button-6" formaction="/info_about_subscribers" formmethod="get"> Information About Subscribers </button>
+                </div>
+
+                <div class="row">
+                    <button class="button-6" formaction="/membership_cancellation" formmethod="get"> Membership Cancellation </button>
+                </div>
+
+                #@exceptionsView()
+                #end
+            </form>
+
+#*    <form id="admin_form" method="post">
+        <div style = "font-size: 25; font-family: cursive; color:white;
+                      position: fixed; bottom: 65%; left: 100; text-align: center;">
+        <h1>Admin's Operations</h1>
+        </div>
+        <input type="hidden" name="connectionID" id="connectionID" value="">
+        <script type="text/javascript">
+            document.getElementById("connectionID").setAttribute('value',localStorage.getItem("connectID"));
+        </script>
+        <div>
+            <button class = "errorLog_buttons" formaction="/error_log"> Error Log </button>
+            <button class = "eventLog_buttons" formaction="/event_log"> Event Log </button>
+            <button class = "eventLog_buttons" formaction="/show_purchase_history_admin"> Purchase History </button>
+        </div>
+    </form>*#
+
+#*        <a class="pruchase_history_admin_buttons" href="/show_purchase_history_admin">Purchase History</a>
+    </div>*#
+
+    #if($event_log)
+        <p class="no_exception">Event Log</p>
+        <h1>Event Log</h1>
+        <div class="row row-3">
+            #foreach($event in $event_log)
+                <div class="col" id="infoCol">
+                    $event
+                </div>
+            #end
+        </div>
+    #elseif($ConnectionID_Not_Found_Exception)
+        <p class="exception">ConnectionID Not Found</p>
+    #end
+    </main>
+
+</body>
+
+</html>

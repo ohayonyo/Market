@@ -1,0 +1,39 @@
+#parse("/htmlDirectories/subscriberNavigationBar.vm")
+<html lang="en-us">
+<head>
+    <link rel="stylesheet" href="/Main.css">
+</head>
+
+<body style = "background: url(basket.jpg); background-size: 50%; background-position: 80%; background-repeat: no-repeat;">
+    #@subscriberNavigationBar()
+    #end
+    <main>
+     <form id="show_cart_form" method="post">
+            <div style = "font-size: 25; font-family: cursive; color: black;
+                          position: inherit; left: 7%;">
+            <h1>Enter The Basket You</h1>
+            <h1>Would Like To See</h1>
+            </div>
+            <input type="hidden" name="connectionID" id="connectionID" value="">
+                <script type="text/javascript">
+                    document.getElementById("connectionID").setAttribute('value',localStorage.getItem("connectID"));
+                </script>
+            <div style = "font-size: 15; font-family: cursive; color: black;
+                          position: fixed; top: 50%; left: 5%;">
+            <h1>Store ID</h1>
+            <input type="number" min = "1" maxlength="50" name="user_name"
+                    placeholder="enter store name here" tabindex="1"
+                    class = "store_id1" required>
+            <button class = "submit_button"> Submit </button>
+            #if($Successful_Show)
+                <p class = "no_exception" >Successful Update</p>
+            #elseif($ConnectionID_Not_Found_Exception)
+                <p class = "exception" >Connection Not Found</p>
+            #elseif($StoreID_Not_Found_Exception)
+                <p class = "exception" >Store Was Not Found</p>
+            #end
+        </div>
+    </form>
+    </main>
+</body>
+</html>

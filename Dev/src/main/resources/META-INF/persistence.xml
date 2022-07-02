@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+2. This file defines classes you wish to persist. How these classes are
+mapped to database tables. Database driver, location, userid and pw
+ -->
+
+<persistence version="2.0"
+             xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+
+    <!-- Define a name used to get an entity manager. Define that you will
+    complete transactions with the DB  -->
+    <persistence-unit name="Market" transaction-type="RESOURCE_LOCAL">
+
+        <!-- Define the class for Hibernate which implements JPA -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <!-- Define the object that should be persisted in the database -->
+        <!--        <class>store.Inventory</class>-->
+
+<!--        <properties>-->
+
+<!--            &lt;!&ndash;     first time: use create-drop, to create DB, or update if DB already exist&ndash;&gt;-->
+<!--            &lt;!&ndash;            <property name="hibernate.hbm2ddl.auto" value="create-drop" />&ndash;&gt;-->
+<!--            <property name="hibernate.hbm2ddl.auto" value="update" />-->
+
+
+<!--            &lt;!&ndash; Driver for DB database &ndash;&gt;-->
+<!--            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />-->
+<!--            &lt;!&ndash; URL for DB &ndash;&gt;-->
+<!--            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11502465" />-->
+<!--            &lt;!&ndash; Username &ndash;&gt;-->
+<!--            <property name="javax.persistence.jdbc.user" value="sql11502465" />-->
+<!--            &lt;!&ndash; Password &ndash;&gt;-->
+<!--            <property name="javax.persistence.jdbc.password" value="utfmmdm1sE" />-->
+<!--            &lt;!&ndash; Drop and re-create the database schema on startup &ndash;&gt;-->
+
+<!--        </properties>-->
+
+        <properties>
+
+            <!--     first time: use create-drop, to create DB, or update if DB already exist-->
+            <!--            <property name="hibernate.hbm2ddl.auto" value="create-drop" />-->
+            <property name="hibernate.hbm2ddl.auto" value="update" />
+
+
+            <!-- Driver for DB database -->
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
+            <!-- URL for DB -->
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mydb" />
+            <!-- Username -->
+            <property name="javax.persistence.jdbc.user" value="root" />
+            <!-- Password -->
+            <property name="javax.persistence.jdbc.password" value="1234" />
+            <!-- Drop and re-create the database schema on startup -->
+
+        </properties>
+    </persistence-unit>
+
+    <!-- Define a name used to get an entity manager. Define that you will
+complete transactions with the DB  -->
+    <persistence-unit name="MarketTest" transaction-type="RESOURCE_LOCAL">
+
+        <!-- Define the class for Hibernate which implements JPA -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <!-- Define the object that should be persisted in the database -->
+        <!--        <class>store.Inventory</class>-->
+
+        <properties>
+
+            <!--     first time: use create-drop, to create DB, or update if DB already exist-->
+            <!--            <property name="hibernate.hbm2ddl.auto" value="create-drop" />-->
+            <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+
+
+            <!-- Driver for DB database -->
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
+            <!-- URL for DB -->
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/test_mydb" />
+            <!-- Username -->
+            <property name="javax.persistence.jdbc.user" value="root" />
+            <!-- Password -->
+            <property name="javax.persistence.jdbc.password" value="1234" />
+            <!-- Drop and re-create the database schema on startup -->
+
+        </properties>
+    </persistence-unit>
+</persistence>

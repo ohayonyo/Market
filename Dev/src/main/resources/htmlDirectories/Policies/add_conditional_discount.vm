@@ -1,0 +1,112 @@
+#parse("/htmlDirectories/subscriberNavigationBar.vm")
+#parse("/htmlDirectories/exceptionsView.vm")
+<html lang="en-us">
+<head>
+    <link rel="stylesheet" href="/Main.css">
+    <link rel="stylesheet" href="/pageDesign.css">
+</head>
+
+<body style = "background: url(back2.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
+    #@subscriberNavigationBar()
+    #end
+<main>
+
+    <div class="Container">
+        <form class=add_conditional_discount_form id=add_conditional_discount_form; method="post";>
+            <h1 class="white">Add Conditional Discount</h1>
+            <input type="hidden" name="connectionID" id="connectionID" value="" required>
+            <script type="text/javascript">
+                document.getElementById("connectionID").setAttribute('value',localStorage.getItem("connectID"));
+            </script>
+
+            <input type="hidden" name="store_id" id="store_id" value=$store_id>
+
+
+            <div class="row">
+                <div class="col-15">
+                    <label class="white" for="products">Products (to select multiple products press on ctrl and choose the products)</label>
+                </div>
+                <div class="col-30">
+                    <select name="products" id="products" multiple required>
+                        #foreach($p in $products)
+                            <option>$p</option>
+                        #end
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-15">
+                    <label class="white" for="percent">Discount Percentage</label>
+                </div>
+                <div class="col-30">
+                    <input type="number" id="percent" name="percent" placeholder="discount in %" required min="0" max="100">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-15">
+                    <label class="white" for="policies">Policy</label>
+                </div>
+                <div class="col-30">
+                    <select name="policies" id="policies" required>
+                        #foreach($p in $policies)
+                            <option>$p</option>
+                        #end
+                    </select>                </div>
+            </div>
+
+            <div class="row">
+                <input type="submit" value="Submit">
+            </div>
+
+            #@exceptionsView()
+            #end
+        </form>
+    </div>
+
+
+
+#*        <form id="add_conditional_discount_form" method="post">
+            <div style = "font-size: 25; font-family: cursive; color: black;
+                          position: inherit; left: 7%;">
+            <h1>Add Conditional Discount</h1>
+            <input type="hidden" name="connectionID" id="connectionID" value="">
+            <script type="text/javascript">
+                document.getElementById("connectionID").setAttribute('value',localStorage.getItem("connectID"));
+            </script>
+            <input type="hidden" name="store_id" id="store_id" value=$store_id>
+            <div>
+                <div>
+                    <label for="products">Products</label>
+                </div>
+                <div>
+                    <label for="products">to select multiple products press on ctrl and choose the products</label>
+                    <select name="products" id="products" multiple required>
+                        <option value="">Please select</option>
+                        #foreach($p in $products)
+                            <option>$p</option>
+                        #end
+                    </select>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <label for="percent">discount percent</label>
+                    <input type="number" name="percent" id="percent" placeholder="discount in %"
+                           min="0" max="100" value="" required>
+                </div>
+                <div>
+                    <label for="policy">policy id</label>
+                    <input type="number" min = "1" maxlength="50" name="policy_id" id="policy_id"
+                                    placeholder="enter policy id here" tabindex="1" value="" required>
+                </div>
+            </div>
+            <div>
+                <button class = "submit_button1" > Submit </button>
+            </div>
+        </form>*#
+
+</main>
+</body>
+</html>

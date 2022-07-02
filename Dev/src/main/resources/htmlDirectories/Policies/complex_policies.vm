@@ -1,0 +1,85 @@
+#parse("/htmlDirectories/subscriberNavigationBar.vm")
+#parse("/htmlDirectories/exceptionsView.vm")
+<html lang="en-us">
+<head>
+    <link rel="stylesheet" href="/Main.css">
+    <link rel="stylesheet" href="/pageDesign.css">
+
+</head>
+
+<body style = "background: url(back2.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
+    #@subscriberNavigationBar()
+    #end
+<main>
+
+
+    <div class="Container">
+        <form id="category_discount_form" method="post">
+            <h1>Set Complex Policy</h1>
+            <input type="hidden" name="connectionID" id="connectionID" value="">
+            <script type="text/javascript">
+                document.getElementById("connectionID").setAttribute('value',localStorage.getItem("connectID"));
+            </script>
+            <input type="hidden" name="store_id" id="store_id" value=$store_id>
+
+
+            <div class="row">
+                <div class="col-15">
+                    <label class="white" for="policies">Policies (to select multiple policies press on ctrl and choose the policies)</label>
+                </div>
+                <div class="col-30">
+                    <select name="policies" id="policies" multiple required>
+                        #foreach($p in $policies)
+                            <option>$p</option>
+                        #end
+                    </select>
+                </div>
+            </div>
+
+            <button class = "button-6" formaction="/and_policy"> And Policy </button>
+            <button class = "button-6" formaction="/or_policy"> Or Policy </button>
+            <button class = "button-6" formaction="/xor_policy"> Xor Policy </button>
+
+
+            #@exceptionsView()
+            #end
+        </form>
+    </div>
+
+
+#*    <form id="type_policies_form" method="post">
+        <div style = "font-size: 25; font-family: cursive; color: black;
+                      position: inherit; left: 7%;">
+        <h1>Set Complex Policy</h1>
+        <input type="hidden" name="connectionID" id="connectionID" value="">
+        <script type="text/javascript">
+            document.getElementById("connectionID").setAttribute('value',localStorage.getItem("connectID"));
+        </script>
+
+        <div style = "font-size: 15; font-family: cursive; color: black;
+                                  position: fixed; top: 30%; left: 5%;">
+        <input type="hidden" name="store_id" id="store_id" value=$store_id>
+        <div>
+            <div>
+                <label for="policies">Policies</label>
+            </div>
+            <div>
+                <label for="policies">to select multiple policies press on ctrl and choose the policies</label>
+                <select name="policies" id="policies" multiple required>
+                    <option value="">Please select</option>
+                    #foreach($p in $policies)
+                        <option>$p</option>
+                    #end
+                </select>
+            </div>
+        </div>
+        <div>
+            <button class = "submit_button1" formaction="/and_policy"> And Policy </button>
+            <button class = "submit_button1" formaction="/or_policy"> Or Policy </button>
+            <button class = "submit_button1" formaction="/xor_policy"> Xor Policy </button>
+        </div>
+    </form>*#
+
+</main>
+</body>
+</html>

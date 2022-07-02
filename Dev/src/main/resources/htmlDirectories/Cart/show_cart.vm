@@ -1,0 +1,62 @@
+#parse("/htmlDirectories/navigationBar.vm")
+#parse("/htmlDirectories/subscriberNavigationBar.vm")
+#parse("/htmlDirectories/exceptionsView.vm")
+<html lang="en-us">
+<head>
+    <link rel="stylesheet" href="/Main.css">
+</head>
+
+<body style = "background: url(back2.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
+    #if($current_user)
+        #@subscriberNavigationBar()
+        #end
+    #else
+        #@navigationBar()
+        #end
+    #end
+    <main>
+        <div style = "font-size: 25; font-family: cursive; color: black; position: inherit; left: 7%;">
+        #if($current_user)
+            <h1>$current_user Cart:</h1>
+        #else
+            <h1>Guest Cart:</h1>
+        #end
+        </div>
+        <div style = "font-size: 15; font-family: cursive; color: black; position: inherit; top: 50%; left: 5%;">
+
+        </div>
+        #if($cart_col)
+            #foreach($line in $cart_col)
+                <div class="no_exception">
+                    $line
+                </div>
+            #end
+
+            #if($cart_price)
+                <p class="no_exception">Cart Price: $cart_price</p>
+            #end
+        #else
+            <form id="show_cart_form" method="post">
+                <input type="hidden" name="connectionID" id="connectionID" value="">
+                <script type="text/javascript">
+                    document.getElementById("connectionID").setAttribute('value',localStorage.getItem("connectID"));
+                    document.forms["show_cart_form"].submit();
+                </script>
+            </form>
+        #end
+
+        <form id="purchase_cart_form" action="/show_purchase_cart" method="post">
+            <input type="hidden" name="connectionID" id="connectionID" value="">
+            <script type="text/javascript">
+                document.getElementById("connectionID").setAttribute('value',localStorage.getItem("connectID"));
+            </script>
+            #if(!$Exception)
+                <button style = "background-color: #333; color: #f2f2f2; font-size: 25px;
+                             font-family: cursive; position: fixed; top: 50%; left: 5%;"> Go To "Purchase Cart" Page </button>
+            #end
+        </form>
+        #@exceptionsView()
+        #end
+    </main>
+</body>
+</html>

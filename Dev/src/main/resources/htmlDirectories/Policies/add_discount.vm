@@ -1,0 +1,105 @@
+#parse("/htmlDirectories/subscriberNavigationBar.vm")
+#parse("/htmlDirectories/exceptionsView.vm")
+<html lang="en-us">
+<head>
+    <link rel="stylesheet" href="/Main.css">
+    <link rel="stylesheet" href="/pageDesign.css">
+
+</head>
+
+<body style = "background: url(back2.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
+    #@subscriberNavigationBar()
+    #end
+<main>
+
+    <div class="Container">
+            <h1 class="white">Add Discount</h1>
+            <input type="hidden" name="connectionID" id="connectionID" value="" required>
+            <input type="hidden" name="path" id="path" value="">
+
+            <script type="text/javascript">
+                document.getElementById("connectionID").setAttribute('value',localStorage.getItem("connectID"));
+            </script>
+
+
+            <div class="row">
+                <div class="col-15">
+                    <label class="white" for="store_id">Store ID</label>
+                </div>
+                <div class="col-30">
+                    <input type="number" id="store_id" name="store_id" placeholder="Enter store id here" required min="1">
+                </div>
+            </div>
+
+            <button class = "button-6" onclick="setPath('/category_discount')" > Category Discount </button>
+            <button class = "button-6" onclick="setPath('/store_discount')" > Store Discount </button>
+            <button class = "button-6" onclick="setPath('/product_discount')"> Product Discount </button>
+            <button class = "button-6" onclick="setPath('/max_discount')"> Max Discount </button>
+            <button class = "button-6" onclick="setPath('/add_conditional_discount')"> Add Conditional Discount </button>
+            <button class = "button-6" onclick="setPath('/assign_conditional_discount')"> Assign Conditional Discount </button>
+
+            <script>
+                function setPath(path) {
+                    let store_id = document.getElementById("store_id").value;
+                    if(store_id !== "" && store_id){
+                        let connectionID = localStorage.getItem("connectID");
+                        window.location.href = path + "?store_id=" + store_id + "&connectionID=" + connectionID;
+                    }
+                    else{
+                        alert("store id missing");
+                    }
+                }
+            </script>
+
+            #if($discount)
+                <p class="no_exception">Discount succeeded with id: $discount</p>
+            #end
+            #@exceptionsView()
+            #end
+
+    </div>
+
+
+
+#*        <div style = "font-size: 25; font-family: cursive; color: black;
+                      position: inherit; left: 7%;">
+            <h1>Add Discount</h1>
+            <input type="hidden" name="connectionID" id="connectionID" value="">
+            <input type="hidden" name="path" id="path" value="">
+
+            <div style = "font-size: 15; font-family: cursive; color: black;
+                                      position: fixed; top: 30%; left: 5%;">
+            <h1>Store ID</h1>
+            <input type="number" min = "1" maxlength="50" name="store_id" id="store_id"
+                    placeholder="Enter store id here" tabindex="1" class = "store_id1"
+                    value="" required >
+            </div>
+            <div>
+                <button class = "submit_button1" onclick="setPath('/category_discount')" > Category Discount </button>
+                <button class = "submit_button1" onclick="setPath('/store_discount')" > Store Discount </button>
+                <button class = "submit_button1" onclick="setPath('/product_discount')"> Product Discount </button>
+                <button class = "submit_button1" onclick="setPath('/max_discount')"> Max Discount </button>
+                <button class = "submit_button1" onclick="setPath('/add_conditional_discount')"> Add Conditional Discount </button>
+                <button class = "submit_button1" onclick="setPath('/assign_conditional_discount')"> Assign Conditional Discount </button>
+            </div>
+            <script>
+                function setPath(path) {
+                    let store_id = document.getElementById("store_id").value;
+                    if(store_id !== "" && store_id){
+                        let connectionID = localStorage.getItem("connectID");
+                        window.location.href = path + "?store_id=" + store_id + "&connectionID=" + connectionID;
+                    }
+                    else{
+                        alert("store id missing");
+                    }
+                }
+            </script>
+        </div>
+        #if($discount)
+            <p class="no_exception">discount succeeded with id: $discount</p>
+        #end
+        #@exceptionsView()
+        #end*#
+</main>
+</body>
+</html>

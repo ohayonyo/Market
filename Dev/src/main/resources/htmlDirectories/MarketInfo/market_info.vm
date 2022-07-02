@@ -1,0 +1,47 @@
+#parse("/htmlDirectories/navigationBar.vm")
+#parse("/htmlDirectories/subscriberNavigationBar.vm")
+#parse("/htmlDirectories/exceptionsView.vm")
+<html lang="en-us">
+<head>
+    <link rel="stylesheet" href="/Main.css">
+    <link rel="stylesheet" href="/pageDesign.css">
+</head>
+
+<body style = "background: url(back2.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
+
+    #if($current_user)
+        #@subscriberNavigationBar()
+        #end
+    #else
+        #@navigationBar()
+        #end
+    #end
+    <main>
+        <div style = "font-size: 25; font-family: cursive; color: black; position: relative; left: 7%;">
+        <h1>Market Info</h1>
+        </div>
+
+        #if($Market_Info)
+            #foreach($line in $Market_Info)
+                <div class="no_exception">
+                    $line
+                </div>
+            #end
+            <p class="no_exception">End of Market Information</p>
+        #else
+            <form id="market_info_form" method="post">
+                <input type="hidden" name="connectionID" id="connectionID" value="">
+                <script type="text/javascript">
+                    document.getElementById("connectionID").setAttribute('value',localStorage.getItem("connectID"));
+                    document.forms["market_info_form"].submit();
+                </script>
+            </form>
+        #end
+
+
+        #@exceptionsView()
+        #end
+        </div>
+    </main>
+</body>
+</html>

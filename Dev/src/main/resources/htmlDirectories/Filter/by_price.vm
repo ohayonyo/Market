@@ -1,0 +1,39 @@
+#parse("/htmlDirectories/subscriberNavigationBar.vm")
+<html lang="en-us">
+<head>
+    <link rel="stylesheet" href="/Main.css">
+    <link rel="stylesheet" href="/pageDesign.css">
+
+</head>
+
+<body style = "background: url(back2.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
+    #@subscriberNavigationBar()
+    #end
+    <main>
+     <form id="open_store_form" method="post">
+            <div style = "font-size: 25; font-family: cursive; color: black;
+                          position: fixed; left: 7%; top: 20%">
+            <h1>Search For a Product By Category</h1>
+            </div>
+            <input type="hidden" name="connectionID" id="connectionID" value="" required>
+                <script type="text/javascript">
+                    document.getElementById("connectionID").setAttribute('value',localStorage.getItem("connectID"));
+                </script>
+            <div style = "font-size: 15; font-family: cursive; color: black;
+                          position: fixed; top: 31%; left: 5%;">
+            <h1>Category Name</h1>
+            <input type="text" maxlength="50" name="product_category"
+                    placeholder="enter category name here" value="" required
+                    class = "product_name">
+            <button class = "submit_button"> Submit </button>
+
+            #if($products)
+                <p class = "no_exception" >$products</p>
+            #elseif($Store_Not_Active_Exception)
+                <p class = "exception" >Store Not Active Exception</p>
+            #end
+        </div>
+    </form>
+    </main>
+</body>
+</html>

@@ -1,0 +1,34 @@
+#macro(navigationBar)
+<head>
+    <link rel="stylesheet" href="/Main.css">
+        <div class="top_navigation">
+            <a class = "home" href="/">Home</a>
+              <div class="sub_navigation">
+                <button class="sub_navigation_button">Personal Space<i class="fa fa-caret-down"></i></button>
+                <div class="sub_navigation_content">
+                  <a href="/register">Register</a>
+                  <a href="/login">Login</a>
+                </div>
+              </div>
+            <div class="sub_navigation">
+                <button class="sub_navigation_button">Cart<i class="fa fa-caret-down"></i></button>
+                <div class="sub_navigation_content">
+                  <a href="/show_cart">Show Cart</a>
+                  <a href="/update_cart">Update Cart</a>
+                </div>
+            </div>
+
+            <div class="sub_navigation">
+                <button class="sub_navigation_button">Search<i class="fa fa-caret-down"></i></button>
+                <div class="sub_navigation_content">
+                  <a href="/search_by_name">By Product Name</a>
+                  <a href="/search_by_category">By Product Category</a>
+                  <a href="/search_by_keyword">By Product Keyword</a>
+                </div>
+            </div>
+
+            <a id = "search" href="/market_info">Market Info</a>
+        </div>
+
+</head>
+#end

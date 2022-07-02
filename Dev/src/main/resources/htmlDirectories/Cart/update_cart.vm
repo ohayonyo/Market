@@ -1,0 +1,68 @@
+#parse("/htmlDirectories/navigationBar.vm")
+#parse("/htmlDirectories/subscriberNavigationBar.vm")
+#parse("/htmlDirectories/exceptionsView.vm")
+<html lang="en-us">
+<head>
+    <link rel="stylesheet" href="/Main.css">
+    <link rel="stylesheet" href="/pageDesign.css">
+</head>
+
+<body style = "background: url(back2.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
+
+    #if($current_user)
+        #@subscriberNavigationBar()
+        #end
+    #else
+        #@navigationBar()
+        #end
+    #end
+    <main >
+
+        <div class="container">
+            <form class=update_cart_form id=update_cart_form; action="/update_cart"; method="post";>
+                <h1>Edit The Products In Your Cart</h1>
+                <input type="hidden" name="connectionID" id="connectionID" value="">
+                <script type="text/javascript">
+                    document.getElementById("connectionID").setAttribute('value',localStorage.getItem("connectID"));
+                </script>
+                <div class="row">
+                    <div class="col-15">
+                        <label for="store_id">Store ID</label>
+                    </div>
+                    <div class="col-30">
+                        <input type="number" id="store_id" name="store_id" placeholder="Enter store id here" min="1" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-15">
+                        <label for="product_id">Product ID</label>
+                    </div>
+                    <div class="col-30">
+                        <input type="number" id="product_id" name="product_id" placeholder="Enter product id here" min="1" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-15">
+                        <label for="final_amount">Final Product Amount</label>
+                    </div>
+                    <div class="col-30">
+                        <input type="number" id="final_amount" name="final_amount" placeholder="Enter final amount here" min="0" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <input type="submit" value="Submit">
+                </div>
+                #if($Successful_Update)
+                    <p class = "no_exception" >The Cart Has Been Updated</p>
+                #end
+                #@exceptionsView()
+                #end
+            </form>
+        </div>
+
+    </main>
+</body>
+</html>

@@ -1,0 +1,48 @@
+#parse("/htmlDirectories/navigationBar.vm")
+#parse("/htmlDirectories/subscriberNavigationBar.vm")
+<html lang="en-us">
+<head>
+    <link rel="stylesheet" href="/Main.css">
+</head>
+
+<body style = "background: url(back4.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
+    <form id="connect" method="post">
+
+            #if($first)
+                <input type="hidden" name="connectionID" id="connectionID" value="">
+                <input type="hidden" name="version" id="version" value="">
+                <script>
+                    document.getElementById("connectionID").setAttribute('value',localStorage.getItem("connectID"));
+                    document.getElementById("version").setAttribute('value',localStorage.getItem("version"));
+                    document.forms["connect"].submit();
+                </script>
+            #elseif($save)
+                <script>
+                    localStorage.setItem("connectID", "$connectID");
+                    localStorage.setItem("version", "$version");
+                </script>
+            #end
+    </form>
+
+    #if($current_user)
+        #@subscriberNavigationBar()
+        #end
+    #else
+        #@navigationBar()
+        #end
+    #end
+    <main>
+        <div style = "font-size: 25; font-family: cursive; color:white;
+                      position: fixed; bottom: 70; left: 100; text-align: center;">
+        <h1>Welcome</h1>
+        <h1>to our</h1>
+        <h1>Market!</h1>
+        </div>
+        #if($Successful_Login)
+            <p class = "no_exception">Successful Login</p>
+        #end
+    </main>
+
+</body>
+
+</html>

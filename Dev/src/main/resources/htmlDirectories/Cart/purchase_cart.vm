@@ -1,0 +1,187 @@
+#parse("/htmlDirectories/navigationBar.vm")
+#parse("/htmlDirectories/subscriberNavigationBar.vm")
+#parse("/htmlDirectories/exceptionsView.vm")
+<html lang="en-us">
+<head st>
+    <link rel="stylesheet" href="/Main.css">
+    <link rel="stylesheet" href="/pageDesign.css">
+</head>
+
+<body style = "background: url(back2.jpg);" >
+    #if($current_user)
+        #@subscriberNavigationBar()
+        #end
+    #else
+        #@navigationBar()
+        #end
+    #end
+    <main >
+        <div class="container">
+            <form class=purchase_cart_form id=purchase_cart_form; action="/purchase_cart"; method="post";>
+                <h1>Purchase Cart</h1>
+                <input type="hidden" name="connectionID" id="connectionID" value="" required>
+                <script type="text/javascript">
+                    document.getElementById("connectionID").setAttribute('value',localStorage.getItem("connectID"));
+                </script>
+                <div class="row">
+                    <div class="col-15">
+                        <label for="card_number">Card Number</label>
+                    </div>
+                    <div class="col-30">
+                        <input type="text" id="card_number" name="card_number" placeholder="Enter card number here" required>
+                    </div>
+                    <div class="col-15">
+                        <label for="address">Address</label>
+                    </div>
+                    <div class="col-30">
+                        <input type="text" id="address" name="address" placeholder="Enter address here" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-15">
+                        <label for="month">Month</label>
+                    </div>
+                    <div class="col-30">
+                        <input type="number" id="month" name="month" placeholder="Enter Month here" required min="1">
+                    </div>
+                    <div class="col-15">
+                        <label for="city">City</label>
+                    </div>
+                    <div class="col-30">
+                        <input type="text" id="city" name="city" placeholder="Enter city name here" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-15">
+                        <label for="year">Year</label>
+                    </div>
+                    <div class="col-30">
+                        <input type="number" id="year" name="year" placeholder="Enter year here" required min="1">
+                    </div>
+                    <div class="col-15">
+                        <label for="country">Country</label>
+                    </div>
+                    <div class="col-30">
+                        <input type="text" id="country" name="country" placeholder="Enter country here" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-15">
+                        <label for="holder">Holder</label>
+                    </div>
+                    <div class="col-30">
+                        <input type="text" id="holder" name="holder" placeholder="Enter card holder's name here" required>
+                    </div>
+                    <div class="col-15">
+                        <label for="zip_code">Zip Code</label>
+                    </div>
+                    <div class="col-30">
+                        <input type="number" id="zip_code" name="zip_code" placeholder="Enter zip code here" min="1" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-15">
+                        <label for="ccv">CCV</label>
+                    </div>
+                    <div class="col-30">
+                        <input type="number" id="ccv" name="ccv" placeholder="Enter CCV here" min="1" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-15">
+                        <label for="id">ID</label>
+                    </div>
+                    <div class="col-30">
+                        <input type="text" id="id" name="id" placeholder="Enter id here" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-15">
+                        <label for="name">Name</label>
+                    </div>
+                    <div class="col-30">
+                        <input type="text" id="name" name="name" placeholder="Enter card owner name here" required>
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <input type="submit" value="Submit">
+                </div>
+                #if($Successful_Purchase)
+                    <p class = "no_exception" >$Purchase was Successfully Done</p>
+                #end
+                #@exceptionsView()
+                #end
+            </form>
+
+#*            #if($cart_price)
+                    <p class="no_exception">Cart Price: $cart_price</p>
+
+
+            #else
+                <form id="show_price_form" action="/show_cart_price" method="post">
+                    <input type="hidden" name="connectionID" id="connectionID" value="">
+                    <script type="text/javascript">
+                        document.getElementById("connectionID").setAttribute('value',localStorage.getItem("connectID"));
+                        document.forms["show_price_form"].submit();
+                    </script>
+                </form>
+            #end*#
+        </div>
+
+        <!--
+    <form id="purchase_cart_form" action="/purchase_cart" method="post">
+        <div style = "font-size: 25; font-family: cursive; color: black;
+                      position: inherit; left: 7%;">
+        <h1>Purchase Cart</h1>
+        </div>
+        <input type="hidden" name="connectionID" id="connectionID" value="">
+            <script type="text/javascript">
+                document.getElementById("connectionID").setAttribute('value',localStorage.getItem("connectID"));
+            </script>
+        <div  style="font-size: 15; font-family: cursive; color: black;
+                          position: fixed; top: 30%; left: 5%;">
+            <h1>Card Number</h1>
+            <input type="text" min="1" maxlength="50" name="card_number"
+                    placeholder="Enter card number here" tabindex="1" class="store_id1">
+            <h1>Month</h1>
+            <input type="number" min="1" maxlength="50" name="month" placeholder="Enter Month here" tabindex="1" class="product_name1">
+            <h1>Year</h1>
+            <input type="number" min="1" maxlength="50" name="year" placeholder="Enter year here" tabindex="1" class="category1">
+            <h1>Holder</h1>
+            <input type="text" min="1" maxlength="50" name="holder" placeholder="Enter holder name here" tabindex="1" class="description1">
+            <h1>CCV</h1>
+            <input type="text" min="1" maxlength="50" name="ccv" placeholder="Enter CCV here" tabindex="1" class="amount1">
+            <h1>Id</h1>
+            <input type="text" min="1" maxlength="50" name="id" placeholder="Enter id here" tabindex="1" class="price1">
+            <h1>Name</h1>
+            <input type="text" min="1" maxlength="50" name="name" placeholder="Enter card owner's name" tabindex="1" class="owner1">
+            <h1>address</h1>
+            <input type="text" min="1" maxlength="50" name="address" placeholder="Enter address" tabindex="1" class="address2">
+            <h1>City</h1>
+            <input type="text" min="1" maxlength="50" name="city" placeholder="Enter city's name" tabindex="1" class="city2">
+            <h1>Country</h1>
+            <input type="text" min="1" maxlength="50" name="country" placeholder="Enter country's name" tabindex="1" class="country2">
+            <h1>Zip Code</h1>
+            <input type="number" min="1" maxlength="50" name="zip_code" placeholder="Enter zip code" tabindex="1" class="zipcode2">
+            <button class="submit_button1"> Purchase </button>
+
+            #if($Successful_Purchase)
+                <p class = "no_exception" >$Purchase was Successfully Done</p>
+                #end
+            #@exceptionsView()
+            #end
+
+                    </div>
+        </form>
+        -->
+    </main>
+</body>
+</html>

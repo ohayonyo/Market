@@ -1,0 +1,93 @@
+#parse("/htmlDirectories/subscriberNavigationBar.vm")
+#parse("/htmlDirectories/exceptionsView.vm")
+<html lang="en-us">
+<head>
+    <link rel="stylesheet" href="/Main.css">
+    <link rel="stylesheet" href="/pageDesign.css">
+
+</head>
+
+<body style = "background: url(back2.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
+    #@subscriberNavigationBar()
+    #end
+<main>
+
+    <div class="Container">
+            <h1>Delete Discount</h1>
+            <input type="hidden" name="connectionID" id="connectionID" value="">
+            <input type="hidden" name="path" id="path" value="">
+
+
+            <div class="row">
+                <div class="col-15">
+                    <label class="white" for="store_id">Store id</label>
+                </div>
+                <div class="col-30">
+                    <input type="number" id="store_id" name="store_id" placeholder="Enter store id here" value="" required min = "1" maxlength="50">
+                </div>
+            </div>
+
+            <div class="row">
+                <input type="submit" value="Submit" onclick="setPath('/delete_discount')">
+            </div>
+
+            <script>
+
+                function setPath(path) {
+                    let store_id = document.getElementById("store_id").value;
+                    if(store_id !== "" && store_id){
+                        let connectionID = localStorage.getItem("connectID");
+                        window.location.href = path + "?store_id=" + store_id + "&connectionID=" + connectionID;
+                    }
+                    else{
+                        alert("store id missing");
+                    }
+                }
+            </script>
+
+            #if($Successful_Delete)
+                <p class = "no_exception" >Successful Delete</p>
+            #end
+            #@exceptionsView()
+            #end
+
+    </div>
+
+        #*<div style = "font-size: 25; font-family: cursive; color: black;
+                      position: inherit; left: 7%;">
+            <h1>Delete Discount</h1>
+            <input type="hidden" name="connectionID" id="connectionID" value="">
+            <input type="hidden" name="path" id="path" value="">
+
+            <div style = "font-size: 15; font-family: cursive; color: black;
+                                      position: fixed; top: 30%; left: 5%;">
+            <h1>Store ID</h1>
+            <input type="number" min = "1" maxlength="50" name="store_id" id="store_id"
+                    placeholder="Enter store id here" tabindex="1" class = "store_id1"
+                    value="" required >
+            </div>
+            <div>
+                <button class = "submit_button1" onclick="setPath('/delete_discount')" > Submit </button>
+            </div>
+            <script>
+
+                function setPath(path) {
+                    let store_id = document.getElementById("store_id").value;
+                    if(store_id !== "" && store_id){
+                        let connectionID = localStorage.getItem("connectID");
+                        window.location.href = path + "?store_id=" + store_id + "&connectionID=" + connectionID;
+                    }
+                    else{
+                        alert("store id missing");
+                    }
+                }
+            </script>
+        </div>
+        #if($Successful_Delete)
+            <p class = "no_exception" >Successful Delete</p>
+        #end
+        #@exceptionsView()
+        #end*#
+</main>
+</body>
+</html>

@@ -1,0 +1,28 @@
+#parse("/htmlDirectories/subscriberNavigationBar.vm")
+<html lang="en-us">
+<head>
+    <link rel="stylesheet" href="/Main.css">
+    <link rel="stylesheet" href="/pageDesign.css">
+
+</head>
+
+<body style = "background: url(basket.jpg); background-size: 50%; background-position: 80%; background-repeat: no-repeat;">
+    #@subscriberNavigationBar()
+    #end
+    <main>
+        #if($event_log)
+            <p class="no_exception">Event Log</p>
+            <h1>Event Log</h1>
+            <div class="row row-3">
+                #foreach($event in $event_log)
+                    <div class="col" id="infoCol">
+                        $event
+                    </div>
+                #end
+            </div>
+        #elseif($ConnectionID_Not_Found_Exception)
+            <p class="exception">ConnectionID Not Found</p>
+        #end
+    </main>
+</body>
+</html>
