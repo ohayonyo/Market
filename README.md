@@ -7,6 +7,9 @@ Lin Avraham - 316418391,
 Barak Rapke - 315309666
 
 ## system startup:
+    first make sure that your directories look as follows:
+![img.png](img.png)
+
     Run the system in : Dev/src/main/java/Main.java
     To run the system with secured communication click on:
         https://localhost:555/
@@ -15,6 +18,8 @@ Barak Rapke - 315309666
     
     The system will check for available DB, and if so she will load the data from it.
     Otherwise, the user will choose a script to run.
+   
+   
    **_Script1_**
    
       1. Registered users: U1, U2, U3, U4
